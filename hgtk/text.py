@@ -41,8 +41,10 @@ def decompose(text, latin_filter=True, compose_code=DEFAULT_COMPOSE_CODE):
 
     for c in list(text):
         if checker.is_hangul(c):
-
+#             print('c:', len(c), c)
+#             print('compose code:', compose_code)
             if checker.is_jamo(c):
+                # compose code: ᴥ
                 result = result + c + compose_code
             else:
                 result = result + "".join(letter.decompose(c)) + compose_code

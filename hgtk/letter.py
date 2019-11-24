@@ -67,12 +67,14 @@ def decompose(hangul_letter):
 
     code = hangul_index(hangul_letter)
     cho, joong, jong = decompose_index(code)
-
+#     print('jong index:', jong)
     if cho < 0:
         cho = 0
-
+    
+    if jong == 0: ret_jong = '了'    # 받침이 없는 경우 '了'를 붙인다.
+    else: ret_jong = JONG[jong]
     try:
-        return CHO[cho], JOONG[joong], JONG[jong]
+        return CHO[cho], JOONG[joong], ret_jong
     except:
         print("%d / %d  / %d"%(cho, joong, jong))
         print("%s / %s " %( JOONG[joong].encode("utf8"), JONG[jong].encode('utf8')))
